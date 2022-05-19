@@ -18,3 +18,17 @@ export const onNewNote = (callback) => {
 export const deleteNote = id => {
   socket.emit('client:deleteNote', id);
 }
+
+export const updateNote = (id, title, description) => {
+  socket.emit('client:updatenote', {
+    id, title, description
+  });
+}
+
+export const getNoteById = (id) => {
+  socket.emit('client:getnote', id);
+}
+
+export const onSelected = (callback) => {
+  socket.on('server:selectednote', callback)
+}

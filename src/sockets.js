@@ -18,6 +18,15 @@ export default (io) => {
     socket.on('client:deleteNote', async (id) => {
       await Note.findByIdAndDelete(id);
       emitNotes();
+    });
+
+    socket.on('client:getnote', async (id) => {
+      const note = await Note.findById(id);
+      io.emit('server:selectednote', note);
+    });
+
+    socket.on('client:updatenote', async (note) => {
+
     })
   })
 }
